@@ -2,10 +2,14 @@
 
 ## Tecnologias utilizadas
 
-### Ferramentas
+### Frameworks
+* [Laravel 12 - PHP](https://laravel.com/docs/12.x/installation)
+* [Tailwind - CSS](https://tailwindcss.com/docs/installation/using-vite)
 
-* VS Code
-* Docker
+
+### Ferramentas
+* [VS Code](https://code.visualstudio.com/download)
+* [Docker](https://docs.docker.com/desktop/setup/install/windows-install/)
 
 ## DEV
 
