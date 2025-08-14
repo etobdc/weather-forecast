@@ -7,6 +7,7 @@ WORKDIR /var/www/html
 RUN apt-get update && apt-get install -y gnupg2 && apt-get install -y curl \
     && curl -sL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs \
-    && npm i -g npm
+    && npm i -g npm \
+    && chown -R www-data:www-data /var/www
 
 COPY ./devops/supervisor/phpserve.conf /opt/docker/etc/supervisor.d/phpserve.conf
