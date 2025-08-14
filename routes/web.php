@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\LogRequest;
 
-Route::get('/', function () {
-    return view('home');
+Route::middleware([LogRequest::class])->group(function () {
+    Route::get('/', function () {
+        return view('home');
+    });
 });
