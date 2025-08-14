@@ -22,14 +22,17 @@ Para rodar o projeto:
     * Caso vá utilizar outra conexão certifique-se que os dados do .env correspondem a ela.
 2- No terminal fora do container execute:
 ```
+npm i
 docker-compose up
 ```
 3- No terminal dentro do container `weather-forecast` execute:
 ```
+composer install
 php artisan key:generate
 php artisan config:clear
 php artisan config:cache
 ```
+4- Reinicie o container `weather-forecast`
 
 ### Erros comuns e soluções
 
