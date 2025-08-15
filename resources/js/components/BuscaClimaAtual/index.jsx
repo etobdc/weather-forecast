@@ -8,7 +8,7 @@ export function BuscaClimaAtual() {
         <div className="col-span-12">
             <h1 className="text-center text-lg text-blue-600 dark:text-sky-400">Busque a previsão do tempo atual</h1>
         </div>
-        <div className="col-span-5">
+        {/* <div className="col-span-5">
             <div className={`w-full max-w-sm`}>
                 <label htmlFor="cep" className="mb-1 block text-sm font-medium text-gray-700">
                     CEP
@@ -68,7 +68,7 @@ export function BuscaClimaAtual() {
             </div>
         </div>
         <div className="col-span-5">01</div>
-        <div className="col-span-2">02</div>
+        <div className="col-span-2">02</div> */}
     </div>
   );
 }
