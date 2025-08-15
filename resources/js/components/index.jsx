@@ -1,3 +1,4 @@
 import './BuscaClimaAtual';
+import './TrocaTema';
 
 
