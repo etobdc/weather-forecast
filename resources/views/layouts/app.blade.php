@@ -38,6 +38,7 @@
                 } else {
                     document.documentElement.setAttribute('data-bs-theme', theme)
                 }
+                localStorage.setItem('theme', theme)
             }
 
             setTheme(getPreferredTheme())
