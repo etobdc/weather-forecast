@@ -15,10 +15,7 @@ class WeatherStackService
         $this->apiKey = config('services.weatherstack.key');
     }
 
-    /**
-     * Retorna o clima atual com base em cidade ou coordenadas.
-     */
-    public function getCurrentWeather(array $query)
+    public function buscaClimaAtual(string $query)
     {
         $params = [
             'access_key' => $this->apiKey,
