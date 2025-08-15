@@ -7,7 +7,7 @@ import path from 'path';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: ['resources/sass/app.scss', 'resources/js/app.js'],
             refresh: true,
         }),
         // tailwindcss(),
@@ -17,5 +17,18 @@ export default defineConfig({
         alias: {
             '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
         }
-    }
+    },
+    // Optional: Silence Sass deprecation warnings. See note below.
+    css: {
+        preprocessorOptions: {
+            scss: {
+            silenceDeprecations: [
+                'import',
+                'mixed-decls',
+                'color-functions',
+                'global-builtin',
+            ],
+            },
+        },
+    },
 });
