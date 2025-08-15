@@ -4,8 +4,8 @@ import { MapPinIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export function BuscaClimaAtual() {
   return (
-    <div className='grid grid-cols-12 gap-4'>
-        <div className="col-span-12">
+    <div className='col-12'>
+        <div className="col-12">
             <h1 className="text-center text-lg text-blue-600 dark:text-sky-400">Busque a previsão do tempo atual</h1>
         </div>
         {/* <div className="col-span-5">
