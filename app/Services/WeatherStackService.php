@@ -19,13 +19,10 @@ class WeatherStackService
     {
         $params = [
             'access_key' => $this->apiKey,
-            'units' => 'm',
-            'language' => config('app.locale'),
             'query' => $query,
         ];
 
         $response = Http::get($this->baseUrl.'/current', $params);
-
         if ($response->failed()) {
             return null;
         }
