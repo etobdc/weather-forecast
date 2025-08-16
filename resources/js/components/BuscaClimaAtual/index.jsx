@@ -163,7 +163,7 @@ export function BuscaClimaAtual() {
             <div className="col-12">
                 {loading && <p>Carregando...</p>}
                 {!loading && climaAtual && (
-                    <ClimaCard cidade={cidade} clima={climaAtual} />
+                    <ClimaCard cidade={cidade} clima={climaAtual} action={'save'} />
                 )}
             </div>
         </div>
@@ -171,5 +171,7 @@ export function BuscaClimaAtual() {
   );
 }
 
-const BuscaClimaAtualroot = createRoot(document.getElementById('busca-clima-atual'));
-BuscaClimaAtualroot.render(<BuscaClimaAtual />);
+if (document.getElementById('busca-clima-atual')) {
+    const BuscaClimaAtualroot = createRoot(document.getElementById('busca-clima-atual'));
+    BuscaClimaAtualroot.render(<BuscaClimaAtual />);
+}

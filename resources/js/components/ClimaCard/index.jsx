@@ -6,7 +6,7 @@ import moment from 'moment';
 import 'moment/dist/locale/pt-br';
 moment.locale('pt-br')
 
-function ClimaCard({ cidade, clima}) {
+function ClimaCard({ cidade, clima, action, previsaoId }) {
     const [loading, setLoading] = useState(false);
     const [toastMsg, setToastMsg] = useState('Previsão salva com sucesso!');
     const [toastStatus, setToastStatus] = useState('text-bg-primary');
@@ -72,6 +72,37 @@ function ClimaCard({ cidade, clima}) {
             });
     }
 
+    const excluiPrevisao = async () => {
+        setLoading(true)
+
+        axios.delete(`/api/previsao/remove/${previsaoId}`)
+            .then(response => {
+                const myModalAlternative = new bootstrap.Modal('#modalAlerta')
+                myModalAlternative.hide();
+                setLoading(false)
+                setToastStatus('text-bg-success')
+                setToastMsg(response.data.message || 'Previsão excluída com sucesso!')
+                const toast = new bootstrap.Toast(document.getElementById('alert'));
+                toast.show();
+                window.location.reload(); // Recarrega a página para atualizar a lista de previsões salvas
+            })
+            .catch(error => {
+                const myModalAlternative = new bootstrap.Modal('#modalAlerta')
+                myModalAlternative.hide();
+                setLoading(false)
+                setToastStatus('text-bg-danger')
+                setToastMsg(error.response?.data?.message || 'Erro ao excluir previsão.')
+                const toast = new bootstrap.Toast(document.getElementById('alert'));
+                toast.show();
+                console.error('Erro ao excluir previsao:', error);
+            });
+    }
+
+    const validaexcluiPrevisao = () => {
+        const myModalAlternative = new bootstrap.Modal('#modalAlerta')
+        myModalAlternative.show();
+    }
+
     return (
         <>
             <div className="card shadow">
@@ -84,18 +115,33 @@ function ClimaCard({ cidade, clima}) {
                             <span className='fs-6 fw-light text-capitalize'>{moment(clima.location.localtime).format('LLLL')}</span>
                         </div>
                         <div className='col text-end'>
-                            <button
-                                type="button"
-                                className="btn btn-success btn-full mt-1"
-                                disabled={loading}
-                                onClick={salvaPrevisao}
-                            >
-                                Salvar previsão
-                            </button>
+                            {action === 'delete' && (
+                                <button
+                                    type="button"
+                                    className="btn btn-danger btn-full mt-1"
+                                    disabled={loading}
+                                    onClick={validaexcluiPrevisao}
+                                >
+                                    Excluir previsão
+                                </button>
+                            )}
+                            {action === 'save' && (
+                                <button
+                                    type="button"
+                                    className="btn btn-success btn-full mt-1"
+                                    disabled={loading}
+                                    onClick={salvaPrevisao}
+                                >
+                                    Salvar previsão
+                                </button>
+                            )}
                         </div>
                     </div>
                     <div className='row justify-between py-3 align-items-center'>
-                        <div className='col-md-3 text-center'>
+                        <div className='col-md-3 text-center py-2'>
+                            <div>
+                                <img src={clima.current.weather_icons[0]} alt="" />
+                            </div>
                             <span className='fs-1'>
                                 {clima.current.temperature}°C
                             </span>
@@ -218,7 +264,7 @@ function ClimaCard({ cidade, clima}) {
                                     <p className="card-text">
                                         {retornarDirecaoVento(clima.current.wind_dir)}
                                         <svg style={{ transform: `rotate(${clima.current.wind_degree}deg)` }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-up mx-2" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                                            <path fillRule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
                                         </svg>
                                         {clima.current.wind_degree}º
                                     </p>
@@ -235,6 +281,23 @@ function ClimaCard({ cidade, clima}) {
                             {toastMsg}
                         </div>
                         <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            <div className="modal fade" id="modalAlerta" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h1 className="modal-title fs-5" id="staticBackdropLabel">Excluir previsão</h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body">
+                        Esta ação não poderá ser desfeita. Tem certeza que deseja excluir esta previsão?
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" className="btn btn-danger" onClick={excluiPrevisao}>Sim, excluir</button>
+                    </div>
                     </div>
                 </div>
             </div>

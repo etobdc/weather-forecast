@@ -24,5 +24,7 @@ export function TrocaTema() {
     );
 }
 
-const TrocaTemaRoot = createRoot(document.getElementById('troca-tema'));
-TrocaTemaRoot.render(<TrocaTema />);
+if (document.getElementById('troca-tema')) {
+    const TrocaTemaRoot = createRoot(document.getElementById('troca-tema'));
+    TrocaTemaRoot.render(<TrocaTema />);
+}
