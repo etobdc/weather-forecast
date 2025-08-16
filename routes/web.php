@@ -7,4 +7,7 @@ Route::middleware([LogRequest::class])->group(function () {
     Route::get('/', function () {
         return view('home');
     });
+    Route::get('/previsoes', function () {
+        return view('previsaoSalva');
+    });
 });
