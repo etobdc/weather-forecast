@@ -25,6 +25,9 @@
 .boxinfo {
     min-height: 8em;
 }
+.boxprevisao {
+    min-height: 40em;
+}
 @include media-breakpoint-down(md) {
   .margin-central {
         max-width: 100%;

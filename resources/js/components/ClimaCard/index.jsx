@@ -105,7 +105,7 @@ function ClimaCard({ cidade, clima, action, previsaoId }) {
 
     return (
         <>
-            <div className="card shadow">
+            <div className="card shadow boxprevisao">
                 <div className="card-body">
                     <div className='row justify-between'>
                         <div className='col'>

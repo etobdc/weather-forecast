@@ -127,92 +127,96 @@ export function Comparar() {
 
     return (
         <>
-            <div className='g-2 row'>
-                <div className="col-12">
-                    <h1 className="text-center fs-2">Compare cidades</h1>
-                    <p className="">Selecione duas cidades para comparar o clima atual. Escolha uma das cidades presentes no hisórico ou informe o cep das cidades que desja comparar.</p>
+            <div className="container-sm margin-central">
+                <div className='g-2 row'>
+                    <div className="col-12">
+                        <h1 className="text-center fs-2">Compare cidades</h1>
+                        <p className="">Selecione duas cidades para comparar o clima atual. Escolha uma das cidades presentes no hisórico ou informe o cep das cidades que desja comparar.</p>
+                    </div>
+                    {historico.length > 0 && (
+                        <div className="col-md-6 col">
+                            <label htmlFor="cidade" className="form-label">Histórico</label>
+                            <Select
+                                options={historico}
+                                placeholder="Cidade salva"
+                                classNamePrefix="form-control"
+                                isClearable
+                                value={cidadeSalva}
+                                onChange={(option) => alterarCidadeSalva(option, 1)}
+                            />
+                            <Select
+                                options={historico}
+                                placeholder="Cidade salva"
+                                classNamePrefix="form-control"
+                                className='mt-2'
+                                isClearable
+                                value={cidadeSalva2}
+                                onChange={(option) => alterarCidadeSalva(option, 2)}
+                            />
+                        </div>
+                    )}
+                    <div className="col-md-3 col">
+                        <div>
+                            <label htmlFor="cidade" className="form-label">CEP</label>
+                            <InputCep
+                                className="form-control"
+                                placeholder="Informe o CEP"
+                                name="cep"
+                                aria-describedby="cepHelp"
+                                onValueChange={(cep) => handleCEPChange(cep, 1)}
+                                styles={styles}
+                                disabled={loading}
+                                value={cep}
+                            />
+                        </div>
+                        <div className='mt-2'>
+                            <InputCep
+                                className="form-control"
+                                placeholder="Informe o CEP"
+                                name="cep"
+                                aria-describedby="cepHelp"
+                                onValueChange={(cep) => handleCEPChange(cep, 2)}
+                                styles={styles}
+                                disabled={loading}
+                                value={cep2}
+                            />
+                        </div>
+                    </div>
+                    <div className="col-md-3 col">
+                        <div>
+                            <label htmlFor="cidade" className="form-label">Cidade</label>
+                            <input placeholder="Cidade" type="text" readOnly className="form-control" id="cidade" value={cidade} />
+                        </div>
+                        <div className='mt-2'>
+                            <input placeholder="Cidade" type="text" readOnly className="form-control" id="cidade" value={cidade2} />
+                        </div>
+                    </div>
                 </div>
-                {historico.length > 0 && (
-                    <div className="col-md-6 col">
-                        <label htmlFor="cidade" className="form-label">Histórico</label>
-                        <Select
-                            options={historico}
-                            placeholder="Cidade salva"
-                            classNamePrefix="form-control"
-                            isClearable
-                            value={cidadeSalva}
-                            onChange={(option) => alterarCidadeSalva(option, 1)}
-                        />
-                        <Select
-                            options={historico}
-                            placeholder="Cidade salva"
-                            classNamePrefix="form-control"
-                            className='mt-2'
-                            isClearable
-                            value={cidadeSalva2}
-                            onChange={(option) => alterarCidadeSalva(option, 2)}
-                        />
-                    </div>
-                )}
-                <div className="col-md-3 col">
-                    <div>
-                        <label htmlFor="cidade" className="form-label">CEP</label>
-                        <InputCep
-                            className="form-control"
-                            placeholder="Informe o CEP"
-                            name="cep"
-                            aria-describedby="cepHelp"
-                            onValueChange={(cep) => handleCEPChange(cep, 1)}
-                            styles={styles}
-                            disabled={loading}
-                            value={cep}
-                        />
-                    </div>
-                    <div className='mt-2'>
-                        <InputCep
-                            className="form-control"
-                            placeholder="Informe o CEP"
-                            name="cep"
-                            aria-describedby="cepHelp"
-                            onValueChange={(cep) => handleCEPChange(cep, 2)}
-                            styles={styles}
-                            disabled={loading}
-                            value={cep2}
-                        />
-                    </div>
-                </div>
-                <div className="col-md-3 col">
-                    <div>
-                        <label htmlFor="cidade" className="form-label">Cidade</label>
-                        <input placeholder="Cidade" type="text" readOnly className="form-control" id="cidade" value={cidade} />
-                    </div>
-                    <div className='mt-2'>
-                        <input placeholder="Cidade" type="text" readOnly className="form-control" id="cidade" value={cidade2} />
-                    </div>
+                <div className="col align-content-center text-center d-grid">
+                    <button
+                        type="button"
+                        className="btn btn-primary btn-full mt-3"
+                        disabled={loading || cidade === ''}
+                        onClick={buscarClimaAtual}
+                    >
+                        Comparar cidades
+                    </button>
                 </div>
             </div>
-            <div className="col align-content-center text-center d-grid">
-                <button
-                    type="button"
-                    className="btn btn-primary btn-full mt-3"
-                    disabled={loading || cidade === ''}
-                    onClick={buscarClimaAtual}
-                >
-                    Comparar cidades
-                </button>
-            </div>
-            <div className='row g-2 mt-3 mb-3'>
-                <div className="col-12">
-                    {loading && <p>Carregando...</p>}
-                    {!loading && previsao1 && (
-                        <ClimaCard cidade={cidade} clima={previsao1} action={'save'} />
-                    )}
-                </div>
-                <div className="col-12">
-                    {loading && <p>Carregando...</p>}
-                    {!loading && previsao2 && (
-                        <ClimaCard cidade={cidade2} clima={previsao2} action={'save'} />
-                    )}
+            <div className='container-md'>
+                <div className='row g-2 mt-3 mb-3'>
+                    <div className="col-12 col-md-6">
+                        {loading && <p>Carregando...</p>}
+                        {!loading && previsao1 && (
+                            <ClimaCard cidade={cidade} clima={previsao1} action={'save'} />
+                        )}
+                    </div>
+                    <div className="col-12 col-md-6">
+                        {loading && <p>Carregando...</p>}
+                        {!loading && previsao2 && (
+                            <ClimaCard cidade={cidade2} clima={previsao2} action={'save'} />
+                        )}
+                    </div>
                 </div>
             </div>
         </>
