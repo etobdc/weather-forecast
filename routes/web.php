@@ -10,4 +10,7 @@ Route::middleware([LogRequest::class])->group(function () {
     Route::get('/previsoes', function () {
         return view('previsaoSalva');
     });
+    Route::get('/historico', function () {
+        return view('historico');
+    });
 });

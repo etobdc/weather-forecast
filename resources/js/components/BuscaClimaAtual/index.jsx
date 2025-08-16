@@ -114,10 +114,25 @@ export function BuscaClimaAtual() {
             .then(response => {
                 setClimaAtual(response.data)
                 setLoading(false)
+                salvaHistorico()
             })
             .catch(error => {
                 setLoading(false)
                 console.error('Erro ao buscar o clima atual:', error);
+            });
+    }
+
+    const salvaHistorico = async () => {
+        const data = {
+            cep,
+            cidade: cidade.split(', ')[0],
+            uf: cidade.split(', ')[1],
+        }
+        axios.post(`/api/historico/novo/`, data)
+            .then(response => {
+                console.log('Historico salvo com sucesso:', response.data);})
+            .catch(error => {
+                console.error('Erro ao salvar o historico:', error);
             });
     }
 
