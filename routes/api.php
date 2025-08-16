@@ -22,6 +22,7 @@ Route::middleware([LogRequest::class])->group(function () {
     });
     Route::prefix('historico')->group(function () {
         Route::get('/', [HistoricoController::class, 'index']);
+        Route::get('/unicos', [HistoricoController::class, 'listaUnicos']);
         Route::post('/novo', [HistoricoController::class, 'store']);
         Route::delete('/remove/{id}', [HistoricoController::class, 'destroy']);
     });

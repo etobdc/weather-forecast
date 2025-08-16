@@ -18,6 +18,17 @@ class HistoricoController  extends Controller
     }
 
     /**
+     * Display a listing of unique historical records.
+     */
+    public function listaUnicos()
+    {
+        $historico = Historico::orderBy('created_at', 'desc')
+            ->groupBy('cep')
+            ->get();
+        return response()->json($historico);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)

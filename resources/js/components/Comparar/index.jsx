@@ -88,7 +88,7 @@ export function Comparar() {
     const buscaHistorico = async () => {
         setLoading(true)
 
-        axios.get(`/api/historico`)
+        axios.get(`/api/historico/unicos`)
             .then(response => {
                 let options = [];
                 response.data.forEach(item => {
