@@ -8,6 +8,9 @@
     margin: 0 auto;
     max-width: 700px;
 }
+.troca-tema {
+    height: 40px;
+}
 @include media-breakpoint-down(md) {
   .margin-central {
         max-width: 100%;

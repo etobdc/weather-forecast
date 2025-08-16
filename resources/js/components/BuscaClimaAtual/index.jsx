@@ -2,6 +2,24 @@ import { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { InputCep } from 'react-input-cep'
 
+const styles = {
+    input: {
+        display: 'block',
+        width: '100%',
+        padding: '6px 12px',
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: 1.5,
+        color: 'var(--bs-body-color)',
+        appearance: 'none',
+        backgroundColor: 'var(--bs-body-bg)',
+        backgroundClip: 'padding-box',
+        border: 'var(--bs-border-width) solid var(--bs-border-color)',
+        borderRadius: 'var(--bs-border-radius)',
+        transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+    },
+}
+
 export function BuscaClimaAtual() {
     const [isCepLoading, setIsCepLoading] = useState(false)
     const [cepData, setCepData] = useState({})
@@ -27,23 +45,7 @@ export function BuscaClimaAtual() {
                         onCepDataFetch={data => setCepData(data)}
                         disabled={isCepLoading}
                         errorMsg={errorMsg}
-                        styles={{
-                            input: {
-                                display: 'block',
-                                width: '100%',
-                                padding: '6px 12px',
-                                fontSize: '16px',
-                                fontWeight: 400,
-                                lineHeight: 1.5,
-                                color: 'var(--bs-body-color)',
-                                appearance: 'none',
-                                backgroundColor: 'var(--bs-body-bg)',
-                                backgroundClip: 'padding-box',
-                                border: 'var(--bs-border-width) solid var(--bs-border-color)',
-                                borderRadius: 'var(--bs-border-radius)',
-                                transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-                            },
-                        }}
+                        styles={styles}
                     />
                     <div id="cepHelp" className="form-text">Informe o CEP sem pontuação</div>
                 </div>
