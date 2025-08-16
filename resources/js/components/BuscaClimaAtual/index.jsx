@@ -192,7 +192,7 @@ export function BuscaClimaAtual() {
             <div className="col align-content-center text-center d-grid">
                 <button
                     type="button"
-                    className="btn btn-success btn-full mt-1"
+                    className="btn btn-primary btn-full mt-1"
                     disabled={loading || cidade === ''}
                     onClick={buscarClimaAtual}
                 >
@@ -200,7 +200,7 @@ export function BuscaClimaAtual() {
                 </button>
             </div>
         </div>
-        <div className='row g-2 mt-3'>
+        <div className='row g-2 mt-3 mb-3'>
             <div className="col-12">
                 {loading && <p>Carregando...</p>}
                 {!loading && climaAtual && (
@@ -211,20 +211,29 @@ export function BuscaClimaAtual() {
                                     <h5 className="card-title">
                                         <i className='bi bi-geo-alt me-2' />{cidade}
                                     </h5>
-                                </div>
-                                <div className='col text-end'>
                                     <span className='fs-6 fw-light text-capitalize'>{moment(climaAtual.location.localtime).format('LLLL')}</span>
                                 </div>
+                                <div className='col text-end'>
+                                    <button
+                                        type="button"
+                                        className="btn btn-success btn-full mt-1"
+                                        disabled={loading || cidade === ''}
+                                        onClick={buscarClimaAtual}
+                                    >
+                                        Salvar previsão
+                                    </button>
+                                </div>
                             </div>
-                            <div className='row justify-between py-3'>
-                                <div className='col-md-3 text-left'>
+                            <div className='row justify-between py-3 align-items-center'>
+                                <div className='col-md-3 text-center'>
                                     <span className='fs-1'>
                                         {climaAtual.current.temperature}°C
                                     </span>
                                     <p>{retornarCodigoClima(climaAtual.current.weather_code)}</p>
                                 </div>
-                                <div className='col'>
+                                <div className='col rounded'>
                                     <iframe
+                                        className='rounded'
                                         width="100%"
                                         height="200"
                                         src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=8&overlay=wind&product=ecmwf&level=surface&lat=${climaAtual.location.lat}&lon=${climaAtual.location.lon}`}
