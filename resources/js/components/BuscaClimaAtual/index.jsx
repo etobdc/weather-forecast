@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { InputCep } from 'react-input-cep'
 import axios from 'axios';
@@ -136,6 +136,14 @@ export function BuscaClimaAtual() {
             });
     }
 
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const cepParam = urlParams.get('cep');
+        if (cepParam) {
+            handleCEPChange(cepParam);
+        }
+    }, []);
+
     return (
     <div className='col-12'>
         <div className='row g-2'>
@@ -153,6 +161,7 @@ export function BuscaClimaAtual() {
                         onValueChange={handleCEPChange}
                         styles={styles}
                         disabled={loading}
+                        value={cep}
                     />
                     <div id="cepHelp" className="form-text">Informe o CEP sem pontuação</div>
                 </div>

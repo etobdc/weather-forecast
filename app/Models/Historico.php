@@ -13,9 +13,4 @@ class Historico extends Model
         'cidade',
         'uf',
     ];
-
-    protected $hidden = [
-        'created_at',
-        'updated_at'
-    ];
 }

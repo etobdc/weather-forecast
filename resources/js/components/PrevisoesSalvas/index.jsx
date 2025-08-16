@@ -26,6 +26,9 @@ export function PrevisoesSalvas() {
 
     return (
         <div className='g-2 row'>
+            <div className="col-12">
+                <h1 className="text-center fs-2">Previsões salvas</h1>
+            </div>
             {!loading && previsoes.length === 0 && (
                 <div className="alert alert-info" role="alert">
                     Nenhuma previsão salva.
@@ -42,3 +45,4 @@ if (document.getElementById('previsoes-salvas')) {
     const PrevisoesSalvasroot = createRoot(document.getElementById('previsoes-salvas'));
     PrevisoesSalvasroot.render(<PrevisoesSalvas />);
 }
+
