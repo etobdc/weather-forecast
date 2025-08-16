@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { InputCep } from 'react-input-cep'
+import axios from 'axios';
 
 const styles = {
     input: {
@@ -21,10 +22,30 @@ const styles = {
 }
 
 export function BuscaClimaAtual() {
-    const [isCepLoading, setIsCepLoading] = useState(false)
-    const [cepData, setCepData] = useState({})
     const [cep, setCep] = useState('')
-    const [errorMsg, setErrorMsg] = useState('')
+    const [cidade, setCidade] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    const handleCEPChange = (cep) => {
+        setCep(cep)
+        if (cep.length === 8) {
+            console.log(cep);
+            buscarCidade(cep)
+        }
+    }
+
+    const buscarCidade = async (cep) => {
+        setLoading(true)
+        axios.get('/api/viacep/' + cep.replace('-', ''))
+            .then(response => {
+                setCidade(`${response.data.localidade}, ${response.data.uf}`)
+                setLoading(false)
+            })
+            .catch(error => {
+                setLoading(false)
+                console.error('Erro ao buscar cidade pelo CEP:', error);
+            });
+    }
 
     return (
     <div className='col-12'>
@@ -40,12 +61,9 @@ export function BuscaClimaAtual() {
                         placeholder="Informe o CEP"
                         name="cep"
                         aria-describedby="cepHelp"
-                        onValueChange={value => setCep(value)}
-                        onLoading={(loadingStatus) => setIsCepLoading(loadingStatus)}
-                        onCepDataFetch={data => setCepData(data)}
-                        disabled={isCepLoading}
-                        errorMsg={errorMsg}
+                        onValueChange={handleCEPChange}
                         styles={styles}
+                        disabled={loading}
                     />
                     <div id="cepHelp" className="form-text">Informe o CEP sem pontuação</div>
                 </div>
@@ -53,11 +71,17 @@ export function BuscaClimaAtual() {
             <div className="col-md-5 col">
                 <div>
                     <label htmlFor="cidade" className="form-label">Cidade</label>
-                    <input type="text" readOnly className="form-control" id="cidade" />
+                    <input type="text" readOnly className="form-control" id="cidade" value={cidade} />
                 </div>
             </div>
             <div className="col align-content-center text-center d-grid">
-                <button type="button" className="btn btn-success btn-full mt-1">Buscar</button>
+                <button
+                    type="button"
+                    className="btn btn-success btn-full mt-1"
+                    disabled={loading || cidade === ''}
+                >
+                    Buscar
+                </button>
             </div>
         </div>
     </div>
