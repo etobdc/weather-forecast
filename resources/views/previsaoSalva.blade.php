@@ -2,5 +2,7 @@
 @extends('layouts.header')
 
 @section('body')
-    <div id="previsoes-salvas"></div>
+    <div class="container-sm margin-central">
+        <div id="previsoes-salvas"></div>
+    </div>
 @endsection

@@ -94,9 +94,7 @@
         </script>
     </head>
     <body>
-        <div class="container-sm margin-central">
-            <div id="troca-tema"></div>
-            @yield('body')
-        </div>
+        <div id="troca-tema"></div>
+        @yield('body')
     </body>
 </html>

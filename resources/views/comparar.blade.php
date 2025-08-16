@@ -2,5 +2,5 @@
 @extends('layouts.header')
 
 @section('body')
-    <div id="comparar"></div>
+        <div id="comparar"></div>
 @endsection
