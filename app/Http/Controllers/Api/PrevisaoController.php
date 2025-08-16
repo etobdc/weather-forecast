@@ -13,7 +13,9 @@ class PrevisaoController  extends Controller
      */
     public function index()
     {
-        $previsoes = Previsao::all();
+        $previsoes = Previsao::whereNotNull('response_json')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return response()->json($previsoes);
     }
 
@@ -22,6 +24,9 @@ class PrevisaoController  extends Controller
      */
     public function store(Request $request)
     {
+        if (!$request->has('response_json')) {
+            return response()->json(['message' => 'O campo response_json é obrigatório.'], 400);
+        }
         try {
             Previsao::create([
                 'response_json' => json_encode($request->input('response_json')),
