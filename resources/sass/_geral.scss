@@ -1,4 +1,4 @@
-
+// Site
 .form {
     &-label {
         margin-bottom: 5px;
@@ -8,8 +8,22 @@
     margin: 0 auto;
     max-width: 700px;
 }
+// Tema
 .troca-tema {
     height: 40px;
+}
+// Busca clima
+.indice-bom-ruim {
+    background: linear-gradient(90deg,rgba(33, 237, 94, 1) 0%, rgba(234, 255, 0, 1) 20%, rgba(255, 85, 0, 1) 71%, rgba(136, 39, 227, 1) 99%);
+}
+.umidade {
+    background: linear-gradient(90deg,rgba(0, 98, 255, 1) 0%, rgba(39, 214, 227, 1) 99%);
+}
+.pressao {
+    background: linear-gradient(90deg,rgba(153, 153, 158, 1) 0%, rgba(210, 242, 247, 1) 99%);
+}
+.boxinfo {
+    min-height: 8em;
 }
 @include media-breakpoint-down(md) {
   .margin-central {
