@@ -13,4 +13,7 @@ Route::middleware([LogRequest::class])->group(function () {
     Route::get('/historico', function () {
         return view('historico');
     });
+    Route::get('/comparar', function () {
+        return view('comparar');
+    });
 });
