@@ -23,7 +23,9 @@ class PrevisaoController  extends Controller
     public function store(Request $request)
     {
         try {
-            Previsao::create($request->all());
+            Previsao::create([
+                'response_json' => json_encode($request->input('response_json')),
+            ]);
             return response()->json(['message' => 'Previsão criada com sucesso!']);
         } catch (\Throwable $th) {
             return response()->json(['message' => 'Erro ao criar previsão.', 'error' => $th->getMessage()], 400);
