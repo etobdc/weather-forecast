@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Weather Forecast</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -96,8 +96,51 @@
                 })
             })
         </script>
+        <style>
+            /* HTML: <div class="loader"></div> */
+            .loader-container {
+                display: flex; /* or block, etc. */
+                justify-content: center;
+                align-items: center;
+                z-index: 100;
+                top: 0;
+            }
+            .loader {
+                width: 50px;
+                aspect-ratio: 1;
+                display: grid;
+                border: 4px solid #0000;
+                border-radius: 50%;
+                border-right-color: rgb(13, 110, 253);
+                animation: l15 1s infinite linear;
+            }
+            .loader::before,
+            .loader::after {
+                content: "";
+                grid-area: 1/1;
+                margin: 2px;
+                border: inherit;
+                border-radius: 50%;
+                animation: l15 2s infinite;
+            }
+            .loader::after {
+                margin: 8px;
+                animation-duration: 3s;
+            }
+            @keyframes l15{
+                100%{transform: rotate(1turn)}
+            }
+        </style>
+        <script>
+            setTimeout(() => {
+                document.querySelector('.loader-container').classList.add('d-none');
+            }, 800);
+        </script>
     </head>
     <body>
+        <div class="loader-container position-absolute bg-body w-100 h-100 z-10">
+            <div class="loader"></div>
+        </div>
         <div id="troca-tema" class="position-relative w-100"></div>
         @yield('body')
     </body>

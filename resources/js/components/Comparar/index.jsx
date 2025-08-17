@@ -139,7 +139,7 @@ export function Comparar() {
                             <Select
                                 options={historico}
                                 placeholder="Cidade salva"
-                                classNamePrefix="form-control"
+                                classNamePrefix='form-control'
                                 isClearable
                                 value={cidadeSalva}
                                 onChange={(option) => alterarCidadeSalva(option, 1)}
