@@ -17,6 +17,7 @@
 * PHPmyadmin
 * WSL - Ubunto terminal
 * Postman
+ > Uma cópia da collection do postman foi anexado ao projeto com todas as rotas das APIs 
 
 ## Metodologia
 
@@ -37,7 +38,7 @@ No geral mantive a estrutura padrão do Laravel, apenas adicionando alguns arqui
 Para utilização do React neste projeto Laravel decidi fazer uma integração de forma simples, [onde cada componente é "isolado" e pode ser utilzado/chamado em qualquer parte do código HTML](https://react.dev/learn/add-react-to-an-existing-project#step-2-render-react-components-anywhere-on-the-page).
 Os componentes foram criados dentro da estrutura padrão do Laravel (resources/js) desta forma bastou importalos no `resources/js/app.js` e todo o projeto Laravel tinha acesso aos componentes.
 Os componentes por sua vez interagiam com o Laravel atraves de requisições para a API do mesmo projeto (busca, salvando e excluido informações).
-
+```
 - Weather_forecast_projetc/
   - app/
     - Http/
@@ -55,12 +56,19 @@ Os componentes por sua vez interagiam com o Laravel atraves de requisições par
             - bootstrap.js 
         - sass /
   - ...
- 
+ ````
+Alguns da arquitetura padrão dos frameworks foi utilizado nomenclaturas de funções mais descritivas e facil entendimento para quem as lê.
+Ex: `buscaPrevisoesSalvas()`, `buscarCidade()`, seguindo a padronização de camelCase do JS.
+
+## Discussões
+* Após o início do projeto foi constatado que as novas versões do Laravel possuem integração com outros frameworks JS nativamente por meio do Inertia.JS. No entanto para não começar do zero foi seguido utilizando o React de forma isolada nas blades do projeto.
+* A API WeatherStack possui problemas de estabilidade e em diversos casos retorna dados errados, de outras cidades com mesmo nome, mesmo passando o maximo de informações possiveis no parametro query (cidade, uf, pais)
+    * Aconselho repensar e trocar por outra com maior precisão como a openWeather - que também possui planos gratuitos e até com mais quotas de busca
+
 
 ## DEV
 
-> É recomendado utilizar docker para subir os containers configurados. (No entanto, caso queira, é possivel rodar o projeto clonando-o em um servidor php e alterando as configurações do arquivo .env) 
-> Uma cópia da collection do postman foi anexado ao projeto com todas as rotas das APIs  
+> É recomendado utilizar docker para subir os containers configurados. (No entanto, caso queira, é possivel rodar o projeto clonando-o em um servidor php e alterando as configurações do arquivo .env)  
 
 Para rodar o projeto:
 
