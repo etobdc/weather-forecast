@@ -10,6 +10,7 @@ function ClimaCard({ cidade, clima, action, previsaoId }) {
     const [loading, setLoading] = useState(false);
     const [toastMsg, setToastMsg] = useState('Previsão salva com sucesso!');
     const [toastStatus, setToastStatus] = useState('text-bg-primary');
+    const [salvo, setSalvo] = useState(false);
 
     const indiceUVData = (uvIndex) => {
         if (uvIndex <= 2) return { level: 'Baixo', color: 'green' };
@@ -51,6 +52,7 @@ function ClimaCard({ cidade, clima, action, previsaoId }) {
         setLoading(true)
 
         const data = {
+            localidade: cidade,
             response_json: JSON.stringify(clima)
         }
 
@@ -61,6 +63,7 @@ function ClimaCard({ cidade, clima, action, previsaoId }) {
                 setToastMsg(response.data.message || 'Previsão salva com sucesso!')
                 const toast = new bootstrap.Toast(document.getElementById('alert'));
                 toast.show();
+                setSalvo(true)
             })
             .catch(error => {
                 setLoading(false)
@@ -125,7 +128,7 @@ function ClimaCard({ cidade, clima, action, previsaoId }) {
                                     Excluir previsão
                                 </button>
                             )}
-                            {action === 'save' && (
+                            {action === 'save' && !salvo && (
                                 <button
                                     type="button"
                                     className="btn btn-success btn-full mt-1"
@@ -133,6 +136,15 @@ function ClimaCard({ cidade, clima, action, previsaoId }) {
                                     onClick={salvaPrevisao}
                                 >
                                     Salvar previsão
+                                </button>
+                            )}
+                            {salvo && (
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-success btn-full mt-1"
+                                    disabled
+                                >
+                                    <i className='bi bi-bookmark-check-fill text-success'></i> Salvo
                                 </button>
                             )}
                         </div>
@@ -235,7 +247,7 @@ function ClimaCard({ cidade, clima, action, previsaoId }) {
                                     <h5 className="card-title">
                                         <i className='bi bi-cloud-check-fill text-success me-2' />Qualidade do ar
                                     </h5>
-                                    <p className="card-text">{qualidadeArData(clima.current.air_quality['us-epa-index']).level}</p>
+                                    <p className="card-text qualidade-text">{qualidadeArData(clima.current.air_quality['us-epa-index']).level}</p>
                                     <div className="position-relative">
                                         <div className="progress" role="indicador uv" aria-label="indicador uv" aria-valuenow={clima.current.air_quality['us-epa-index']} aria-valuemin="1" aria-valuemax="6">
                                             <div className="progress-bar indice-bom-ruim p-2" style={{width: '100%'}}></div>
