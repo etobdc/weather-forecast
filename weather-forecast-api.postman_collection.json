@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "f6658242-dcdb-4e1a-8129-cb4d02ba2f2d",
+		"name": "weather-forecast-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2912190"
+	},
+	"item": [
+		{
+			"name": "viacep",
+			"item": [
+				{
+					"name": "Busca cidade pelo cep",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/viacep/89709-030",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"viacep",
+								"89709-030"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "weatherstack",
+			"item": [
+				{
+					"name": "Busca clima atual",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/weatherstack/current?query=concordia, SC, BR",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"weatherstack",
+								"current"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "concordia, SC, BR"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Previsão",
+			"item": [
+				{
+					"name": "Lista todas as previsões salvas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/previsao/",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"previsao",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar previsão",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"response_json\": {\"id\": 1} \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/previsao/novo",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"previsao",
+								"novo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista um aprevisão especifica",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/previsao/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"previsao",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove uma previsão especifica",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/previsao/remove/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"previsao",
+								"remove",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Histórico",
+			"item": [
+				{
+					"name": "Lista todo o histórico de pesquisa",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Lista o histórico de pesquisa filttrado por ceps unicos",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Cria registro no histórico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\": \"89709030\",\r\n    \"cidade\": \"Concórdia\",\r\n    \"uf\": \"SC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/historico/novo",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"historico",
+								"novo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria registro no histórico Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\": \"89709030\",\r\n    \"cidade\": \"Concórdia\",\r\n    \"uf\": \"SC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/historico/remove/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"historico",
+								"remove",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
