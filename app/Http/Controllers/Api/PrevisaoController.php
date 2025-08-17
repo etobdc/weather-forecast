@@ -29,6 +29,7 @@ class PrevisaoController  extends Controller
         }
         try {
             Previsao::create([
+                'localidade' => $request->input('localidade'),
                 'response_json' => json_encode($request->input('response_json')),
             ]);
             return response()->json(['message' => 'Previsão criada com sucesso!']);

@@ -9,6 +9,7 @@ class Previsao extends Model
     protected $table = 'previsao';
 
     protected $fillable = [
+        'localidade',
         'response_json',
     ];
 
