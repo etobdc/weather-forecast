@@ -84,9 +84,9 @@ const teste = {
 
 export function BuscaClimaAtual() {
     const [cep, setCep] = useState('')
-    const [cidade, setCidade] = useState('concórdia')
+    const [cidade, setCidade] = useState('')
     const [loading, setLoading] = useState(false)
-    const [climaAtual, setClimaAtual] = useState(teste)
+    const [climaAtual, setClimaAtual] = useState(null);
 
     const handleCEPChange = (cep) => {
         setCep(cep)
@@ -150,7 +150,7 @@ export function BuscaClimaAtual() {
             <div className="col-12">
                 <h1 className="text-center fs-2">Busque a previsão do tempo atual</h1>
             </div>
-            <div className="col-md-5 col">
+            <div className="col-12 col-sm-5 col">
                 <div>
                     <label htmlFor="cidade" className="form-label">CEP</label>
                     <InputCep
@@ -166,13 +166,13 @@ export function BuscaClimaAtual() {
                     <div id="cepHelp" className="form-text">Informe o CEP sem pontuação</div>
                 </div>
             </div>
-            <div className="col-md-5 col">
+            <div className="col-12 col-sm-5 col">
                 <div>
                     <label htmlFor="cidade" className="form-label">Cidade</label>
                     <input type="text" readOnly className="form-control" id="cidade" value={cidade} />
                 </div>
             </div>
-            <div className="col align-content-center text-center d-grid">
+            <div className="col col-sm-2 align-content-center text-center d-grid">
                 <button
                     type="button"
                     className="btn btn-primary btn-full mt-1"

@@ -36,6 +36,10 @@
                 if (theme === 'auto') {
                     document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
                 } else {
+                    if (!theme) {
+                        theme = getStoredTheme()
+                        theme = theme === 'dark' ? 'light' : 'dark'
+                    }
                     document.documentElement.setAttribute('data-bs-theme', theme)
                 }
                 localStorage.setItem('theme', theme)
@@ -94,7 +98,7 @@
         </script>
     </head>
     <body>
-        <div id="troca-tema"></div>
+        <div id="troca-tema" class="position-relative w-100"></div>
         @yield('body')
     </body>
 </html>

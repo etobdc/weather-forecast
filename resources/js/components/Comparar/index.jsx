@@ -134,7 +134,7 @@ export function Comparar() {
                         <p className="">Selecione duas cidades para comparar o clima atual. Escolha uma das cidades presentes no hisórico ou informe o cep das cidades que desja comparar.</p>
                     </div>
                     {historico.length > 0 && (
-                        <div className="col-md-6 col">
+                        <div className="col-12 col-sm-6 col">
                             <label htmlFor="cidade" className="form-label">Histórico</label>
                             <Select
                                 options={historico}

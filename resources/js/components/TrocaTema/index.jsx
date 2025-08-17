@@ -15,7 +15,7 @@ export function TrocaTema() {
         <div className='position-absolute'>
             <button
                 onClick={() => alteraTemaSite()}
-                className='position-fixed top-0 end-0 m-2 btn btn-outline-primary rounded-circle troca-tema'
+                className='position-fixed top-0 end-0 m-2 btn btn-outline-primary rounded-circle troca-tema d-none d-md-block'
             >
                 {tema === 'dark' && <i className="bi bi-brightness-high"></i>}
                 {tema === 'ligth' && <i className="bi bi-moon-stars"></i>}
