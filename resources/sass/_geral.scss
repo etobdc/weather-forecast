@@ -23,13 +23,16 @@
     background: linear-gradient(90deg,rgba(153, 153, 158, 1) 0%, rgba(210, 242, 247, 1) 99%);
 }
 .boxinfo {
-    min-height: 8em;
+    min-height: 8.2em;
 }
 .boxprevisao {
-    min-height: 40em;
+    min-height: 37em;
 }
 @include media-breakpoint-down(md) {
   .margin-central {
         max-width: 100%;
     }
+}
+.qualidade-text {
+    font-size: 13px!important;
 }
