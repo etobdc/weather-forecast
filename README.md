@@ -16,6 +16,7 @@
 * MySQL
 * PHPmyadmin
 * WSL - Ubunto terminal
+* Postman
 
 ## Metodologia
 
@@ -59,6 +60,7 @@ Os componentes por sua vez interagiam com o Laravel atraves de requisições par
 ## DEV
 
 > É recomendado utilizar docker para subir os containers configurados. (No entanto, caso queira, é possivel rodar o projeto clonando-o em um servidor php e alterando as configurações do arquivo .env) 
+> Uma cópia da collection do postman foi anexado ao projeto com todas as rotas das APIs  
 
 Para rodar o projeto:
 
