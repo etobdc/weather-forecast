@@ -88,6 +88,7 @@ composer install
 php artisan key:generate
 php artisan config:clear
 php artisan config:cache
+php artisan migrate
 ```
 4. Reinicie o container `weather-forecast`
 5. Rode `npm run dev` no terminal fora do container para o vite assistir e atualizar as alterações de css, scss e js
